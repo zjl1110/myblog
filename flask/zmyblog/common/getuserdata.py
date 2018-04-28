@@ -5,6 +5,12 @@ __author__ = "ZJL"
 from sqlalchemy.sql import text
 from .redis_manager import setTimeData,getData
 import hashlib,time
+#python3的html转义
+import html
+
+#python2的html转义
+# import HTMLParser
+# import cgi
 
 from .mysql_manager import select_one_dict,select_all_dict,count_one,select_one,add_update_del
 
@@ -33,7 +39,13 @@ def getcontent(contenttype,current,display):
                                   "content.userid=`user`.id", "contenttype", "content.typeid=contenttype.id", typedata,
                                   pagenum, display), dbkeys)
     if data:
-        print(data)
+        for d in data:
+            print(d)
+            #python3
+            d["content"] = html.unescape(d["content"])
+            # pyrhon2
+            # d["content"] = HTMLParser.HTMLParser().unescape(d["content"])
+            print("vvvvvvvvv",d)
         return data
     else:
         return {"code": "文章内容数据获取错误"}
@@ -104,6 +116,10 @@ def usertoken(f):
 
 #编辑文章db
 def setcontent(conid,ctype,content,title,username):
+    #python2的html转义
+    # content = cgi.escape(content)
+    # python3的html转义
+    content = html.escape(content)
     if conid:
         updatasql = "UPDATE content SET content.title=\'%s\',content.content=\'%s\',content.typeid=(SELECT id FROM contenttype WHERE type=\'%s\') WHERE content.id=\'%s\';"%(title,content,ctype,conid)
         data = add_update_del(updatasql)

@@ -24,4 +24,4 @@
 * 数据库操作
 
 ## 问题
-vue的summernote组件初始化以后出现一个.popover元素,开发时display:none直接隐藏掉,但是打包以后放入nginx中又显示了,于是我室直接修改打包以后的css文件,这个情况在直接使用jquery代码实现的summernote没有出现,使用npm安装会出现
+vue的summernote组件初始化以后出现一个.popover,.popover .arrow元素,开发时display:none直接隐藏掉,但是打包以后放入nginx中又显示了,于是我是直接修改打包以后的css文件,搜索.popover,.popover .arrow然后将样式全部注视掉,这个情况在直接使用jquery代码实现的summernote没有出现,使用npm安装会出现

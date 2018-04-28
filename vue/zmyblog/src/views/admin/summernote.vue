@@ -44,6 +44,13 @@ export default {
         height: 200,
         tabsize: 2,
         lang: 'zh-CN',
+        placeholder:"输入内容.....",
+        toolbar:[
+        		['style',['bold','italic','clear']],
+        		['fontsize',['fontsize']],
+        		['para',['ul','ol','paragraph']],
+        		['insert',['picture','link']]
+        ],
         callbacks: {
             onImageUpload: function(files) { //回调上传图片函数 
             this.datax = new FormData();  
